@@ -5,64 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Commercial | Adil Husain</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
-        body { background: #0b0b0b; color: #fff; font-family: 'Inter', sans-serif; margin: 0; position: relative;}
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://i.postimg.cc/m26yH4S0/noise.png'); opacity: 0.05; pointer-events: none; z-index: 9999; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@300;400&display=swap');
         
-        /* Full Width Hero for Licious */
-        .comm-hero { width: 100%; height: 80vh; background: linear-gradient(rgba(0,0,0,0.1), rgba(11,11,11,1)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1500&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; align-items: flex-end; padding: 60px 10%; }
-        .comm-info { max-width: 600px; border-left: 2px solid #3b82f6; padding-left: 30px; position: relative; z-index: 10;}
-        .comm-info h1 { font-size: 3rem; letter-spacing: 6px; font-weight: 300; text-transform: uppercase; margin-bottom: 10px; }
-        .comm-info p { color: #888; font-size: 1rem; line-height: 1.6; margin-bottom: 20px;}
-        .comm-info a { color: #3b82f6; font-size: 12px; letter-spacing: 2px; text-decoration: none; font-weight: 600;}
+        :root { --bg: #0b0b0b; --text: #eee; --text-muted: #888; --blue: #3b82f6; }
+        
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 0; position: relative; overflow-x: hidden; }
+        
+        /* BULLETPROOF FILM GRAIN */
+        body::after {
+            content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.06; pointer-events: none; z-index: 9999;
+        }
+        
+        a { text-decoration: none; color: inherit; }
 
-        /* Grid for Flipkart & Concerts */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 20px; padding: 60px 10% 120px; max-width: 1600px; margin: 0 auto;}
-        .card { aspect-ratio: 16/9; background-size: cover; background-position: center; border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden; cursor: pointer; }
-        .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.8); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; text-align: center; padding: 20px;}
-        .card:hover .overlay { opacity: 1; }
-        .overlay h3 { font-weight: 400; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;}
-        .overlay p { color: #888; font-size: 0.85rem; margin-bottom: 15px;}
-        .overlay a { border: 1px solid #fff; padding: 10px 20px; border-radius: 30px; font-size: 10px; letter-spacing: 2px; text-decoration: none; color: #fff; text-transform: uppercase;}
-        .overlay a:hover { background: #fff; color: #000; }
-
-        .back-btn { position: fixed; top: 40px; left: 40px; font-size: 10px; letter-spacing: 2px; border: 1px solid #333; padding: 10px 20px; border-radius: 40px; z-index: 10000; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); text-decoration: none; color: #888; transition: 0.3s;}
+        .back-btn { position: fixed; top: 40px; left: 40px; font-size: 10px; letter-spacing: 2px; border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 40px; color: #ccc; z-index: 10000; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); transition: 0.3s;}
         .back-btn:hover { background: #fff; color: #000; }
+
+        .header-spacer { padding-top: 150px; }
+
+        /* COMMERCIAL SECTION STYLING */
+        .film-section { text-align: center; margin-bottom: 120px; padding: 0 5%; }
+        .film-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px; }
+        .film-role { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #888; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 50px; }
+
+        /* LARGE SINGLE MEDIA CONTAINER */
+        .large-media { width: 100%; max-width: 1400px; aspect-ratio: 16/9; margin: 0 auto; background: #111; position: relative; overflow: hidden; z-index: 10; }
+        .large-media img { width: 100%; height: 100%; object-fit: cover; border: none; filter: brightness(0.85); transition: 0.4s; }
+        
+        .play-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; transition: 0.3s; opacity: 0; }
+        .large-media:hover .play-overlay { opacity: 1; }
+        .large-media:hover img { filter: brightness(1); transform: scale(1.02); }
+        
+        .play-btn { background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; color: #000; font-size: 14px; font-weight: bold; padding: 15px 30px; border-radius: 40px; letter-spacing: 2px; }
+
+        @media (max-width: 900px) { 
+            .film-title { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
     <a href="index.html" class="back-btn">← HOME</a>
-    
-    <div class="comm-hero">
-        <div class="comm-info">
-            <h1>Licious</h1>
-            <p>High-end commercial cinematography showcasing food textures and dynamic lighting for digital brand campaigns.</p>
-            <a href="https://www.instagram.com/reel/DDwuPWXPNqA/?igsh=dWZ3aGMzb3hlcWw0" target="_blank">WATCH REEL &rarr;</a>
+    <div class="header-spacer"></div>
+
+    <div class="film-section">
+        <h2 class="film-title">LICIOUS - BRAND CAMPAIGN</h2>
+        <div class="film-role">Cinematographer</div>
+        <div class="large-media">
+            <a href="https://www.instagram.com/reel/DDwuPWXPNqA/?igsh=dWZ3aGMzb3hlcWw0" target="_blank">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2000&auto=format&fit=crop" alt="Licious Campaign">
+                <div class="play-overlay">
+                    <div class="play-btn">WATCH REEL</div>
+                </div>
+            </a>
         </div>
     </div>
 
-    <div class="grid">
-        <div class="card" style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop');">
-            <div class="overlay">
-                <h3>Flipkart × Samsung</h3>
-                <p>Concept commercial for AI Phones.</p>
-                <a href="https://drive.google.com/drive/folders/13-rAsMoPyuB4MgfPu26QOS5esBMC2V5c?usp=drive_link" target="_blank">View Project</a>
-            </div>
-        </div>
-        <div class="card" style="background-image: url('https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=1000&auto=format&fit=crop');">
-            <div class="overlay">
-                <h3>Flipkart × Viral Fission</h3>
-                <p>Fast-turnaround concept video.</p>
-                <a href="https://drive.google.com/drive/folders/1_AH79nVcLU10oVITdH8hvOkarp0TQA9Z" target="_blank">View Project</a>
-            </div>
-        </div>
-        <div class="card" style="background-image: url('https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=1000&auto=format&fit=crop');">
-            <div class="overlay">
-                <h3>Coldplay Concert</h3>
-                <p>Live event coverage.</p>
-                <a href="https://emad.framer.website/coldplay" target="_blank">View Gallery</a>
-            </div>
+    <div class="film-section">
+        <h2 class="film-title">FLIPKART × SAMSUNG AI PHONES</h2>
+        <div class="film-role">Concept Commercial</div>
+        <div class="large-media">
+            <a href="https://drive.google.com/drive/folders/13-rAsMoPyuB4MgfPu26QOS5esBMC2V5c?usp=drive_link" target="_blank">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2000&auto=format&fit=crop" alt="Flipkart x Samsung">
+                <div class="play-overlay">
+                    <div class="play-btn">VIEW PROJECT</div>
+                </div>
+            </a>
         </div>
     </div>
+
+    <div class="film-section">
+        <h2 class="film-title">FLIPKART × VIRAL FISSION</h2>
+        <div class="film-role">Concept Video & BTS</div>
+        <div class="large-media">
+            <a href="https://drive.google.com/drive/folders/1_AH79nVcLU10oVITdH8hvOkarp0TQA9Z" target="_blank">
+                <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=2000&auto=format&fit=crop" alt="Flipkart x Viral Fission">
+                <div class="play-overlay">
+                    <div class="play-btn">VIEW PROJECT</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="film-section" style="margin-bottom: 60px;">
+        <h2 class="film-title">COLDPLAY CONCERT</h2>
+        <div class="film-role">Live Event Visuals</div>
+        <div class="large-media">
+            <a href="https://emad.framer.website/coldplay" target="_blank">
+                <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=2000&auto=format&fit=crop" alt="Coldplay Concert">
+                <div class="play-overlay">
+                    <div class="play-btn">VIEW GALLERY</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
 </body>
 </html>
