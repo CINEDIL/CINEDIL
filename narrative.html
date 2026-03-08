@@ -5,135 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Narrative | Adil Husain</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        :root { --bg: #050505; --text: #F5F5F7; --text-muted: #888888; --glass: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.08); --blue: #3b82f6; }
-        html { scroll-behavior: smooth; } * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; } a { text-decoration: none; color: inherit; cursor: pointer; }
-        nav { position: fixed; top: 30px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; justify-content: space-between; background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 50px; padding: 12px 24px; width: 90%; max-width: 1000px; z-index: 9999; }
-        .nav-links { display: flex; gap: 40px; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; } .nav-links a:hover { color: var(--blue); transition: 0.3s; }
-        .logo { font-size: 18px; font-weight: 400; letter-spacing: 1px; } .btn-reach { border: 1px solid var(--glass-border); padding: 10px 24px; border-radius: 30px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; } .btn-reach:hover { background: var(--text); color: var(--bg); }
-        .page-header { padding: 150px 5% 50px; text-align: center; border-bottom: 1px solid var(--glass-border); } .page-header h1 { font-size: 3rem; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px;} .page-header p { color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem;}
-        .showcase { padding: 100px 5%; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; border-bottom: 1px solid var(--glass-border);}
-        .image-container { width: 100%; aspect-ratio: 4/3; border-radius: 16px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5); background-size: cover; background-position: center; transition: 0.5s; cursor: pointer;} .image-container:hover { transform: scale(1.02); }
-        .info-stack .tag { display: inline-block; background: var(--blue); color: #fff; font-size: 9px; font-weight: 700; padding: 6px 12px; border-radius: 4px; margin-bottom: 24px; letter-spacing: 2px; text-transform: uppercase;}
-        .info-stack h2 { font-size: 2.5rem; margin-bottom: 16px; font-weight: 300; line-height: 1.1; letter-spacing: -1px;} .info-stack p { color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; font-size: 0.95rem; font-weight: 300; }
-        .pill-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; } .pill-tags span { background: var(--glass); border: 1px solid var(--glass-border); padding: 8px 18px; border-radius: 30px; font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase;}
-        .action-btns { display: flex; gap: 16px; } .btn-primary { background: var(--blue); color: #fff; padding: 16px 36px; border-radius: 40px; font-weight: 600; font-size: 13px; transition: 0.3s; display: inline-block;} .btn-primary:hover { background: #2563eb; transform: scale(1.02); }
-        .projects { padding: 80px 5% 40px; max-width: 1400px; margin: 0 auto; } .section-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 40px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);}
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px; margin-bottom: 80px; }
-        .card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; transition: 0.4s; display: flex; flex-direction: column; } .card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.2); }
-        .card-img { width: 100%; aspect-ratio: 16/9; background-size: cover; background-position: center; border-bottom: 1px solid var(--glass-border);}
-        .card-content { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; } .card-content h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 400;} .card-content p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; flex-grow: 1; line-height: 1.6;} .card-content a { color: var(--blue); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
-        @media (max-width: 900px) { .showcase { grid-template-columns: 1fr; } .nav-links { display: none; } }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        body { background: #0b0b0b; color: #eee; font-family: 'Inter', sans-serif; padding: 100px 5%; text-align: center; position: relative; margin: 0;}
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://i.postimg.cc/m26yH4S0/noise.png'); opacity: 0.05; pointer-events: none; z-index: 9999; }
+        a { text-decoration: none; }
+        
+        .header { margin-bottom: 80px; }
+        .header h1 { font-size: 2.5rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 300; margin-bottom: 10px; }
+        .header p { color: #666; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+        
+        .section-title { font-size: 1.5rem; text-transform: uppercase; margin-bottom: 5px; font-weight: 400; letter-spacing: 2px; }
+        .role-tag { color: #555; letter-spacing: 3px; font-size: 0.7rem; margin-bottom: 40px; display: block; text-transform: uppercase; }
+
+        /* THE 3-COLUMN VERTICAL GRID */
+        .still-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto 100px; }
+        .still-grid img { width: 100%; aspect-ratio: 3/4.5; object-fit: cover; filter: brightness(0.85); transition: 0.4s; border: 1px solid rgba(255,255,255,0.05); }
+        .still-grid img:hover { filter: brightness(1.1); transform: scale(1.02); z-index: 2; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+
+        /* CINEMASCOPE GRID */
+        .cinema-grid { display: flex; flex-direction: column; gap: 20px; max-width: 1200px; margin: 0 auto 100px; }
+        .cinema-grid img { width: 100%; aspect-ratio: 2.35/1; object-fit: cover; filter: brightness(0.85); transition: 0.4s; border: 1px solid rgba(255,255,255,0.05); }
+        .cinema-grid img:hover { filter: brightness(1.1); transform: scale(1.01); }
+
+        /* VIDEO CARDS */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto 100px; text-align: left; }
+        .vid-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden; }
+        .vid-card iframe { width: 100%; aspect-ratio: 16/9; border: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .vid-info { padding: 20px; }
+        .vid-info h3 { font-size: 1.1rem; font-weight: 400; margin-bottom: 10px; }
+        .vid-info p { color: #888; font-size: 0.85rem; line-height: 1.5; margin-bottom: 15px; }
+
+        .back-btn { position: fixed; top: 40px; left: 40px; font-size: 10px; letter-spacing: 2px; border: 1px solid #333; padding: 10px 20px; border-radius: 40px; color: #888; z-index: 10000; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); transition: 0.3s;}
+        .back-btn:hover { background: #fff; color: #000; }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-links"><a href="index.html">HOME</a><a href="index.html#work">WORK</a><a href="index.html#about">ABOUT</a></div>
-        <div class="logo">Adil Husain</div>
-        <a href="mailto:imailadilhusain@gmail.com" class="btn-reach">Reach Out &rarr;</a>
-    </nav>
-    <div class="page-header">
-        <h1>Narrative</h1><p>Feature Films, Shorts & Music Videos</p>
+    <a href="index.html" class="back-btn">← HOME</a>
+    
+    <div class="header">
+        <h1>Narrative</h1>
+        <p>The Art of Storytelling</p>
     </div>
 
-    <section class="showcase">
-        <a href="https://postimg.cc/gallery/CZKZ5h2" target="_blank">
-            <div class="image-container" style="background-image: url('https://i.postimg.cc/mZh46bWz/Screenshot-2026-03-08-at-4-25-10-PM.png');"></div>
-        </a>
-        <div class="info-stack">
-            <span class="tag">Feature / Short Film</span><h2>BHAASH</h2>
-            <p>Operating as Assistant Cinematographer. Captured dramatic rural landscapes, intimate classroom sequences, and highly challenging low-light setups.</p>
-            <div class="pill-tags"><span>Assistant Cinematographer</span><span>Lighting</span><span>Camera Operation</span></div>
-            <div class="action-btns"><a href="https://postimg.cc/gallery/CZKZ5h2" target="_blank" class="btn-primary">View Screengrabs</a></div>
+    <section>
+        <h2 class="section-title">BHAASH</h2>
+        <span class="role-tag">Assistant Cinematographer | Short Film</span>
+        <div class="still-grid">
+            <img src="https://i.postimg.cc/mZh46bWz/Screenshot-2026-03-08-at-4-25-10-PM.png" alt="Bhaash Frame">
+            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800&auto=format&fit=crop" alt="Placeholder">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800&auto=format&fit=crop" alt="Placeholder">
         </div>
     </section>
 
-    <section class="showcase" style="border-bottom: none;">
-        <a href="https://postimg.cc/gallery/25hKZpY" target="_blank">
-            <div class="image-container" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1000&auto=format&fit=crop');"></div>
-        </a>
-        <div class="info-stack">
-            <span class="tag">Feature Film</span><h2>Mission Hitchki</h2>
-            <p>Direction Team (AD/DA). Assisted with shoot planning, continuity, and intense on-set coordination for this upcoming feature film.</p>
-            <div class="pill-tags"><span>Assistant Director</span><span>Continuity</span><span>Set Logistics</span></div>
-            <div class="action-btns"><a href="https://postimg.cc/gallery/25hKZpY" target="_blank" class="btn-primary">View BTS Gallery</a></div>
+    <section>
+        <h2 class="section-title">Feature Films</h2>
+        <span class="role-tag">Assistant Director | Mission Hitchki & Bindu & Bilju</span>
+        <div class="cinema-grid">
+            <img src="https://images.unsplash.com/photo-1590212151175-e58edd96185b?q=80&w=1500&auto=format&fit=crop" alt="Feature Still">
+            <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=1500&auto=format&fit=crop" alt="Feature Still">
         </div>
     </section>
 
-    <section class="projects" style="padding-bottom: 40px;">
-        <h2 class="section-title">More Feature Work</h2>
-        <div class="grid" style="margin-bottom: 0;">
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1000&auto=format&fit=crop');"></div>
-                <div class="card-content">
-                    <h3>Bindu & Bilju</h3>
-                    <p>Direction Team (AD/DA). Managed logistics and assisted in the execution of key scenes for this feature film.</p>
-                    <a href="https://drive.google.com/drive/folders/1xBkFF62lx-dVF1-UI1GMWzWmHjiBBZHA" target="_blank">View Project Drive &rarr;</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="projects" style="padding-top: 40px;">
-        <h2 class="section-title">Short Films</h2>
-        <div class="grid" style="margin-bottom: 0;">
-            <div class="card">
-                <iframe width="100%" height="220" src="https://www.youtube.com/embed/vklTNhxbCQE?controls=1" title="YouTube video player" frameborder="0" allowfullscreen style="border-bottom: 1px solid var(--glass-border);"></iframe>
-                <div class="card-content">
+    <section>
+        <h2 class="section-title">Shorts & Music Videos</h2>
+        <span class="role-tag">Director & Cinematographer</span>
+        <div class="video-grid">
+            <div class="vid-card">
+                <iframe src="https://www.youtube.com/embed/vklTNhxbCQE?controls=1" allowfullscreen></iframe>
+                <div class="vid-info">
                     <h3>Independent Short Film</h3>
-                    <p>Directed and shot as an independent narrative project. Focus on emotional storytelling and pacing.</p>
-                    <a href="https://youtu.be/vklTNhxbCQE" target="_blank">Watch on YouTube &rarr;</a>
+                    <p>Directed and shot as an independent narrative project. Focus on emotional storytelling.</p>
                 </div>
             </div>
-            <div class="card">
-                <iframe width="100%" height="220" src="https://www.youtube.com/embed/q6Mg1bRUtI8?controls=1" title="YouTube video player" frameborder="0" allowfullscreen style="border-bottom: 1px solid var(--glass-border);"></iframe>
-                <div class="card-content">
+            <div class="vid-card">
+                <iframe src="https://www.youtube.com/embed/q6Mg1bRUtI8?controls=1" allowfullscreen></iframe>
+                <div class="vid-info">
                     <h3>Short Film 1</h3>
-                    <p>Early narrative work exploring visual continuity and dramatic lighting setups as a college project.</p>
-                    <a href="https://youtu.be/q6Mg1bRUtI8" target="_blank">Watch on YouTube &rarr;</a>
+                    <p>Early narrative work exploring visual continuity and dramatic lighting.</p>
                 </div>
             </div>
-            <div class="card">
-                <iframe width="100%" height="220" src="https://www.youtube.com/embed/QOyItkvQrSI?controls=1" title="YouTube video player" frameborder="0" allowfullscreen style="border-bottom: 1px solid var(--glass-border);"></iframe>
-                <div class="card-content">
+            <div class="vid-card">
+                <iframe src="https://www.youtube.com/embed/QOyItkvQrSI?controls=1" allowfullscreen></iframe>
+                <div class="vid-info">
                     <h3>Short Film 2</h3>
-                    <p>Independent narrative short showcasing character-driven camera movement and practical lighting.</p>
-                    <a href="https://youtu.be/QOyItkvQrSI" target="_blank">Watch on YouTube &rarr;</a>
+                    <p>Independent narrative short showcasing character-driven camera movement.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="projects" style="padding-top: 40px; padding-bottom: 120px;">
-        <h2 class="section-title">Music Videos & Ads</h2>
-        <div class="grid" style="margin-bottom: 0;">
-            <div class="card">
-                <iframe width="100%" height="220" src="https://www.youtube.com/embed/QV1ybKcr8gI?controls=1" title="YouTube video player" frameborder="0" allowfullscreen style="border-bottom: 1px solid var(--glass-border);"></iframe>
-                <div class="card-content">
+            <div class="vid-card">
+                <iframe src="https://www.youtube.com/embed/QV1ybKcr8gI?controls=1" allowfullscreen></iframe>
+                <div class="vid-info">
                     <h3>College Music Video</h3>
-                    <p>A visual exploration of rhythm and color crafted during my B.A. Filmmaking program at Mithibai.</p>
-                    <a href="https://youtu.be/QV1ybKcr8gI" target="_blank">Watch on YouTube &rarr;</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600861194942-f883de0dfe96?q=80&w=1000&auto=format&fit=crop');"></div>
-                <div class="card-content">
-                    <h3>College Ad Film</h3>
-                    <p>Commercial narrative project focused on product lighting, framing, and fast-paced editing techniques.</p>
-                    <a href="https://drive.google.com/file/d/1L-Z5wQESs4Ht3-V-67M6UKd8VoQiWXHq/view" target="_blank">View on Google Drive &rarr;</a>
+                    <p>A visual exploration of rhythm and color crafted during my B.A. program.</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <footer style="border-top: 1px solid var(--glass-border); padding: 80px 5%; text-align: center;">
-        <h2 style="font-size: 2rem; font-weight: 300; margin-bottom: 30px;">Let's tell a story.</h2>
-        <div class="footer-links" style="display: flex; justify-content: center; gap: 40px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">
-            <a href="mailto:imailadilhusain@gmail.com" style="color: var(--text-muted); transition: 0.3s;">Email</a>
-            <a href="https://instagram.com/cine.dil" target="_blank" style="color: var(--text-muted); transition: 0.3s;">Instagram</a>
-            <a href="https://youtube.com/@adilhusain" target="_blank" style="color: var(--text-muted); transition: 0.3s;">YouTube</a>
-        </div>
-    </footer>
 </body>
 </html>
