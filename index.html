@@ -50,6 +50,16 @@
 
         .meta-info { display: flex; gap: 40px; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;}
 
+        /* Work Grid */
+        .projects { padding: 60px 10% 120px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10;}
+        .projects h2 { font-size: 1.5rem; font-weight: 400; margin-bottom: 40px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);}
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+        .card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 30px; transition: 0.4s; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.2); }
+        .card h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 400; line-height: 1.4;}
+        .card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; flex-grow: 1; line-height: 1.6;}
+        .card a { color: var(--blue); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-decoration: none;}
+
         footer { padding: 100px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
         @media (max-width: 900px) { .hero { flex-direction: column; } .typewriter-text { font-size: 1.4rem; } }
     </style>
@@ -58,7 +68,7 @@
     <nav>
         <div class="nav-links">
             <a href="#">HOME</a>
-            <a href="#about">ABOUT</a>
+            <a href="#work">WORK</a>
         </div>
         <div class="logo">adil husain</div>
         <a href="mailto:imailadilhusain@gmail.com" style="font-size: 11px; border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 30px; text-decoration: none; color: white; transition: 0.3s;">CONTACT</a>
@@ -91,7 +101,7 @@
     </section>
 
     <script>
-        const text = "Hi, I am Adil. A failed human being turned into a filmmaker. I've always wanted to show all my emotion through my films. I did my bachelor's from Mithibai in Mumbai in filmmaking, but the real work happened on the ground. So made Short films, documentaries and feature film for college to learn in depth of filmmaking. To feed my stomach, I worked as a DOP for Qyuki, shooting for Farah Khan's Aunty Kisko Bola show, and shooting vlogs for Ankita Lokhande and Hansika Motwani's YouTube channels. I've worked on various feature films as an Assistant Cinematographer and Assistant Director. I've been a DOP for Flipkart Video and shot brand projects like Licious, while directing my own short films and documentaries. It’s all about the emotion in the frame.";
+        const text = "Hi, I am Adil. A failed human being turned into a filmmaker. I don't just shoot; I bleed emotion into every frame. My degree from Mithibai taught me the rules, but the streets of Mumbai and the pressure of feature sets taught me how to break them. To feed my stomach, I worked as a DOP for Qyuki, shooting for Farah Khan's Aunty Kisko Bola show, and shooting vlogs for Ankita Lokhande and Hansika Motwani's YouTube channels. I've worked on various feature films as an Assistant Cinematographer and Assistant Director. I've been a DOP for Flipkart Video and shot brand projects like Licious, while directing my own short films and documentaries. It’s all about the emotion in the frame.";
         let i = 0;
         function typeWriter() {
             if (i < text.length) {
@@ -100,9 +110,44 @@
                 setTimeout(typeWriter, 35);
             }
         }
-        // Start typing effect when section is scrolled into view, or just on load
         window.onload = () => { setTimeout(typeWriter, 500); };
     </script>
+
+    <section class="projects" id="work">
+        <h2>Selected Works</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>BHAASH (Short Film)</h3>
+                <p>Assistant Cinematographer. Captured dramatic rural landscapes, intimate classroom sequences, and low-light dramatic scenes.</p>
+                <a href="narrative.html">View Screengrabs &rarr;</a>
+            </div>
+            <div class="card">
+                <h3>Flipkart × Samsung AI Phones</h3>
+                <p>Concept commercial and branded visual storytelling executed for Flipkart.</p>
+                <a href="commercial.html">View Project &rarr;</a>
+            </div>
+            <div class="card">
+                <h3>Lucious Brand Campaign</h3>
+                <p>High-end commercial cinematography showcasing food textures and brand identity.</p>
+                <a href="commercial.html">Watch Reel &rarr;</a>
+            </div>
+            <div class="card">
+                <h3>Feature Film Experience</h3>
+                <p>Direction team (AD/DA) and on-set coordination for 'Mission Hitchki' and 'Bindu & Bilju'.</p>
+                <a href="narrative.html">View Stills &rarr;</a>
+            </div>
+            <div class="card">
+                <h3>Coldplay Concert Visuals</h3>
+                <p>Live event coverage capturing the scale, lighting, and energy of the arena.</p>
+                <a href="commercial.html">View Gallery &rarr;</a>
+            </div>
+            <div class="card">
+                <h3>Independent Documentary</h3>
+                <p>Raw, unscripted observation focusing on daily survival and human connection.</p>
+                <a href="documentary.html">Watch Documentary &rarr;</a>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <img src="https://i.postimg.cc/k5n08dyH/A742132.jpg" alt="Adil Husain" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 20px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
