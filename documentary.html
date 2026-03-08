@@ -5,42 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentary | Adil Husain</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
-        body { background: #0b0b0b; color: #fff; font-family: 'Inter', sans-serif; text-align: center; padding: 100px 5% 150px; margin: 0; }
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://i.postimg.cc/m26yH4S0/noise.png'); opacity: 0.05; pointer-events: none; z-index: 9999; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@300;400&display=swap');
         
-        .header { margin-bottom: 60px; }
-        .header h1 { font-weight: 300; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; font-size: 2.5rem;}
-        .header p { color: #666; letter-spacing: 2px; font-size: 0.9rem; text-transform: uppercase;}
+        :root { --bg: #0b0b0b; --text: #eee; --text-muted: #888; --blue: #3b82f6; }
         
-        .video-box { width: 100%; max-width: 1000px; aspect-ratio: 16/9; margin: 0 auto 60px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.5);}
-        iframe { width: 100%; height: 100%; border: none; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 0; position: relative; overflow-x: hidden; }
         
-        .doc-title { font-size: 1.2rem; font-weight: 400; margin-bottom: 5px; letter-spacing: 1px; text-transform: uppercase;}
-        .doc-desc { color: #888; font-size: 0.9rem; max-width: 800px; margin: 0 auto 40px; line-height: 1.6;}
+        /* BULLETPROOF FILM GRAIN */
+        body::after {
+            content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.06; pointer-events: none; z-index: 9999;
+        }
+        
+        a { text-decoration: none; color: inherit; }
 
-        .back-btn { position: fixed; top: 40px; left: 40px; font-size: 10px; letter-spacing: 2px; border: 1px solid #333; padding: 10px 20px; border-radius: 40px; text-decoration: none; color: #888; z-index: 10000; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); transition: 0.3s;}
+        .back-btn { position: fixed; top: 40px; left: 40px; font-size: 10px; letter-spacing: 2px; border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 40px; color: #ccc; z-index: 10000; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); transition: 0.3s;}
         .back-btn:hover { background: #fff; color: #000; }
+
+        .header-spacer { padding-top: 150px; }
+
+        /* DOCUMENTARY SECTION STYLING */
+        .film-section { text-align: center; margin-bottom: 120px; padding: 0 5%; }
+        .film-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px; }
+        .film-role { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #888; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 50px; }
+
+        /* LARGE SINGLE MEDIA CONTAINER FOR YOUTUBE */
+        .large-media { width: 100%; max-width: 1400px; aspect-ratio: 16/9; margin: 0 auto; background: #111; position: relative; z-index: 10; border: 1px solid rgba(255,255,255,0.05); }
+        .large-media iframe { width: 100%; height: 100%; object-fit: cover; border: none; }
+
+        @media (max-width: 900px) { 
+            .film-title { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
     <a href="index.html" class="back-btn">← HOME</a>
-    
-    <div class="header">
-        <h1>Documentary</h1>
-        <p>Visual Truth</p>
+    <div class="header-spacer"></div>
+
+    <div class="film-section">
+        <h2 class="film-title">DOES IT CLUCKING MATTER? - DOCUMENTARY</h2>
+        <div class="film-role">Director & Cinematographer</div>
+        <div class="large-media">
+            <iframe src="https://www.youtube.com/embed/i0vZ3crhBx8?controls=1" allowfullscreen></iframe>
+        </div>
     </div>
 
-    <h2 class="doc-title">Does It Clucking Matter?</h2>
-    <p class="doc-desc">An independent documentary exploring the raw, unfiltered reality of student life, relationships, and daily survival.</p>
-    <div class="video-box">
-        <iframe src="https://www.youtube.com/embed/i0vZ3crhBx8?controls=1" allowfullscreen></iframe>
-    </div>
-
-    <h2 class="doc-title">Independent Observation</h2>
-    <p class="doc-desc">Finding the narrative in real-world environments through patient framing and cinematic observation.</p>
-    <div class="video-box">
-        <iframe src="https://www.youtube.com/embed/XQ86OsSsOG4?controls=1" allowfullscreen></iframe>
+    <div class="film-section" style="margin-bottom: 60px;">
+        <h2 class="film-title">INDEPENDENT OBSERVATION</h2>
+        <div class="film-role">Director & Cinematographer</div>
+        <div class="large-media">
+            <iframe src="https://www.youtube.com/embed/XQ86OsSsOG4?controls=1" allowfullscreen></iframe>
+        </div>
     </div>
 
 </body>
