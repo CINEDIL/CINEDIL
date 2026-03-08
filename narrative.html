@@ -5,100 +5,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Narrative | Adil Husain</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
-        body { background: #0b0b0b; color: #eee; font-family: 'Inter', sans-serif; padding: 100px 5%; text-align: center; position: relative; margin: 0;}
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://i.postimg.cc/m26yH4S0/noise.png'); opacity: 0.05; pointer-events: none; z-index: 9999; }
-        a { text-decoration: none; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@300;400&display=swap');
         
-        .header { margin-bottom: 80px; }
-        .header h1 { font-size: 2.5rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 300; margin-bottom: 10px; }
-        .header p { color: #666; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+        :root { --bg: #0b0b0b; --text: #eee; --text-muted: #888; --blue: #3b82f6; }
         
-        .section-title { font-size: 1.5rem; text-transform: uppercase; margin-bottom: 5px; font-weight: 400; letter-spacing: 2px; }
-        .role-tag { color: #555; letter-spacing: 3px; font-size: 0.7rem; margin-bottom: 40px; display: block; text-transform: uppercase; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 0; position: relative; overflow-x: hidden; }
+        
+        /* BULLETPROOF FILM GRAIN */
+        body::after {
+            content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.06; pointer-events: none; z-index: 9999;
+        }
+        
+        a { text-decoration: none; color: inherit; }
 
-        /* THE 3-COLUMN VERTICAL GRID */
-        .still-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto 100px; }
-        .still-grid img { width: 100%; aspect-ratio: 3/4.5; object-fit: cover; filter: brightness(0.85); transition: 0.4s; border: 1px solid rgba(255,255,255,0.05); }
-        .still-grid img:hover { filter: brightness(1.1); transform: scale(1.02); z-index: 2; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-
-        /* CINEMASCOPE GRID */
-        .cinema-grid { display: flex; flex-direction: column; gap: 20px; max-width: 1200px; margin: 0 auto 100px; }
-        .cinema-grid img { width: 100%; aspect-ratio: 2.35/1; object-fit: cover; filter: brightness(0.85); transition: 0.4s; border: 1px solid rgba(255,255,255,0.05); }
-        .cinema-grid img:hover { filter: brightness(1.1); transform: scale(1.01); }
-
-        /* VIDEO CARDS */
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto 100px; text-align: left; }
-        .vid-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden; }
-        .vid-card iframe { width: 100%; aspect-ratio: 16/9; border: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .vid-info { padding: 20px; }
-        .vid-info h3 { font-size: 1.1rem; font-weight: 400; margin-bottom: 10px; }
-        .vid-info p { color: #888; font-size: 0.85rem; line-height: 1.5; margin-bottom: 15px; }
-
-        .back-btn { position: fixed; top: 40px; left: 40px; font-size: 10px; letter-spacing: 2px; border: 1px solid #333; padding: 10px 20px; border-radius: 40px; color: #888; z-index: 10000; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); transition: 0.3s;}
+        .back-btn { position: fixed; top: 40px; left: 40px; font-size: 10px; letter-spacing: 2px; border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 40px; color: #ccc; z-index: 10000; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); transition: 0.3s;}
         .back-btn:hover { background: #fff; color: #000; }
+
+        .header-spacer { padding-top: 150px; }
+
+        /* FEATURE FILM SECTION STYLING */
+        .film-section { text-align: center; margin-bottom: 120px; padding: 0 5%; }
+        .film-title { font-size: 2.5rem; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px; }
+        .film-role { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #888; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 50px; }
+
+        /* 2-COLUMN ZERO GAP GRID FOR BHAASH */
+        .tight-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; width: 100%; max-width: 1600px; margin: 0 auto; background: #000; position: relative; z-index: 10; }
+        .tight-grid img { width: 100%; aspect-ratio: 2.35/1; object-fit: cover; display: block; filter: brightness(0.85); transition: filter 0.4s; cursor: crosshair; }
+        .tight-grid img:hover { filter: brightness(1.1); }
+
+        /* LARGE SINGLE MEDIA CONTAINER FOR OTHER FILMS */
+        .large-media { width: 100%; max-width: 1400px; aspect-ratio: 16/9; margin: 0 auto; background: #111; position: relative; overflow: hidden; z-index: 10; }
+        .large-media img, .large-media iframe { width: 100%; height: 100%; object-fit: cover; border: none; }
+        
+        .play-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; transition: 0.3s; opacity: 0; }
+        .large-media:hover .play-overlay { opacity: 1; }
+        .play-btn { width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; color: #000; font-size: 24px; padding-left: 5px; }
+
+        /* MULTI-VIDEO GRID FOR SHORTS */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; }
+        .video-wrapper { aspect-ratio: 16/9; background: #111; }
+        .video-wrapper iframe { width: 100%; height: 100%; border: none; }
+
+        /* DIVIDER */
+        .divider { width: 100%; max-width: 1400px; margin: 0 auto 120px; border: none; border-top: 1px solid rgba(255,255,255,0.05); }
+
+        @media (max-width: 900px) { 
+            .tight-grid { grid-template-columns: 1fr; } 
+            .film-title { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
     <a href="index.html" class="back-btn">← HOME</a>
-    
-    <div class="header">
-        <h1>Narrative</h1>
-        <p>The Art of Storytelling</p>
+    <div class="header-spacer"></div>
+
+    <div class="film-section">
+        <h2 class="film-title">BHAASH - FEATURE FILM</h2>
+        <div class="film-role">Assistant Cinematographer</div>
+        <div class="tight-grid">
+            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1500&auto=format&fit=crop" alt="Bhaash Frame">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1500&auto=format&fit=crop" alt="Bhaash Frame">
+            <img src="https://images.unsplash.com/photo-1590212151175-e58edd96185b?q=80&w=1500&auto=format&fit=crop" alt="Bhaash Frame">
+            <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=1500&auto=format&fit=crop" alt="Bhaash Frame">
+            <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=1500&auto=format&fit=crop" alt="Bhaash Frame">
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1500&auto=format&fit=crop" alt="Bhaash Frame">
+        </div>
     </div>
 
-    <section>
-        <h2 class="section-title">BHAASH</h2>
-        <span class="role-tag">Assistant Cinematographer | Short Film</span>
-        <div class="still-grid">
-            <img src="https://i.postimg.cc/mZh46bWz/Screenshot-2026-03-08-at-4-25-10-PM.png" alt="Bhaash Frame">
-            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800&auto=format&fit=crop" alt="Placeholder">
-            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800&auto=format&fit=crop" alt="Placeholder">
+    <div class="film-section">
+        <h2 class="film-title">MISSION HITCHKI - FEATURE FILM</h2>
+        <div class="film-role">Assistant Director</div>
+        <div class="large-media">
+            <img src="https://images.unsplash.com/photo-1590212151175-e58edd96185b?q=80&w=2000&auto=format&fit=crop" alt="Mission Hitchki">
         </div>
-    </section>
+    </div>
 
-    <section>
-        <h2 class="section-title">Feature Films</h2>
-        <span class="role-tag">Assistant Director | Mission Hitchki & Bindu & Bilju</span>
-        <div class="cinema-grid">
-            <img src="https://images.unsplash.com/photo-1590212151175-e58edd96185b?q=80&w=1500&auto=format&fit=crop" alt="Feature Still">
-            <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=1500&auto=format&fit=crop" alt="Feature Still">
+    <div class="film-section">
+        <h2 class="film-title">BINDU & BILJU - FEATURE FILM</h2>
+        <div class="film-role">Assistant Director</div>
+        <div class="large-media">
+            <a href="https://drive.google.com/drive/folders/1xBkFF62lx-dVF1-UI1GMWzWmHjiBBZHA" target="_blank">
+                <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2000&auto=format&fit=crop" alt="Bindu & Bilju">
+                <div class="play-overlay">
+                    <div class="play-btn">▶</div>
+                </div>
+            </a>
         </div>
-    </section>
+    </div>
 
-    <section>
-        <h2 class="section-title">Shorts & Music Videos</h2>
-        <span class="role-tag">Director & Cinematographer</span>
+    <hr class="divider">
+
+    <div class="film-section">
+        <h2 class="film-title">SHORT FILMS</h2>
+        <div class="film-role">Director & Cinematographer</div>
         <div class="video-grid">
-            <div class="vid-card">
+            <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/vklTNhxbCQE?controls=1" allowfullscreen></iframe>
-                <div class="vid-info">
-                    <h3>Independent Short Film</h3>
-                    <p>Directed and shot as an independent narrative project. Focus on emotional storytelling.</p>
-                </div>
             </div>
-            <div class="vid-card">
+            <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/q6Mg1bRUtI8?controls=1" allowfullscreen></iframe>
-                <div class="vid-info">
-                    <h3>Short Film 1</h3>
-                    <p>Early narrative work exploring visual continuity and dramatic lighting.</p>
-                </div>
             </div>
-            <div class="vid-card">
+            <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/QOyItkvQrSI?controls=1" allowfullscreen></iframe>
-                <div class="vid-info">
-                    <h3>Short Film 2</h3>
-                    <p>Independent narrative short showcasing character-driven camera movement.</p>
-                </div>
-            </div>
-            <div class="vid-card">
-                <iframe src="https://www.youtube.com/embed/QV1ybKcr8gI?controls=1" allowfullscreen></iframe>
-                <div class="vid-info">
-                    <h3>College Music Video</h3>
-                    <p>A visual exploration of rhythm and color crafted during my B.A. program.</p>
-                </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="film-section">
+        <h2 class="film-title">MUSIC VIDEO</h2>
+        <div class="film-role">Cinematographer</div>
+        <div class="large-media" style="max-width: 1000px;">
+            <iframe src="https://www.youtube.com/embed/QV1ybKcr8gI?controls=1" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="film-section" style="margin-bottom: 60px;">
+        <h2 class="film-title">AD FILM</h2>
+        <div class="film-role">Cinematographer</div>
+        <div class="large-media" style="max-width: 1000px;">
+            <a href="https://drive.google.com/file/d/1L-Z5wQESs4Ht3-V-67M6UKd8VoQiWXHq/view" target="_blank">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2000&auto=format&fit=crop" alt="Ad Film">
+                <div class="play-overlay">
+                    <div class="play-btn" style="font-size: 14px; font-weight: bold; width: auto; padding: 15px 30px; border-radius: 40px; letter-spacing: 2px;">VIEW AD FILM</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
 </body>
 </html>
