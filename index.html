@@ -3,208 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adil Husain | Cinematographer & Director</title>
+    <title>Adil Husain | Director & Cinematographer</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
-        :root {
-            --bg: #050505;
-            --text: #F5F5F7;
-            --text-muted: #888888;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --blue: #3b82f6;
-        }
-
-        html { scroll-behavior: smooth; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono&display=swap');
+        
+        :root { --bg: #0b0b0b; --text: #eee; --text-muted: #888; --blue: #3b82f6; }
+        html { scroll-behavior: smooth; } 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; cursor: pointer; }
-
-        /* Navigation */
-        nav {
-            position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
-            display: flex; align-items: center; justify-content: space-between;
-            background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border); border-radius: 50px;
-            padding: 12px 24px; width: 90%; max-width: 1000px; z-index: 9999;
+        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; position: relative; }
+        
+        /* Cinematic Film Grain Texture */
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://i.postimg.cc/m26yH4S0/noise.png');
+            opacity: 0.05; pointer-events: none; z-index: 9999;
         }
+
+        nav { position: fixed; top: 30px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; justify-content: space-between; background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); border-radius: 50px; padding: 12px 24px; width: 90%; max-width: 1000px; z-index: 9998; }
         .nav-links { display: flex; gap: 40px; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
-        .nav-links a:hover { color: var(--blue); transition: 0.3s; }
-        .logo { font-size: 18px; font-weight: 400; letter-spacing: 1px; }
-        .btn-reach { border: 1px solid var(--glass-border); padding: 10px 24px; border-radius: 30px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; }
-        .btn-reach:hover { background: var(--text); color: var(--bg); }
+        .nav-links a { color: var(--text); transition: 0.3s; text-decoration: none; }
+        .nav-links a:hover { color: var(--blue); }
+        .logo { text-transform: lowercase; font-weight: 600; letter-spacing: 1px; }
 
-        /* 3-Column Hero */
-        .hero { display: flex; height: 100vh; width: 100vw; position: relative; z-index: 1;}
-        .hero-col {
-            flex: 1; position: relative; display: flex; align-items: center; justify-content: center;
-            background-size: cover; background-position: center; transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer;
-            border-right: 1px solid var(--glass-border);
-        }
-        .hero-col:last-child { border-right: none; }
+        /* The Typographic Hero */
+        .hero { display: flex; height: 100vh; width: 100vw; }
+        .hero-col { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background-size: cover; background-position: center; transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1); border-right: 1px solid rgba(255,255,255,0.05); text-decoration: none; color: white; }
         .hero-col:hover { flex: 1.4; }
-        .hero-col::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,5,5,1), rgba(5,5,5,0.4)); transition: 0.4s; }
-        .hero-col:hover::before { background: linear-gradient(to top, rgba(5,5,5,0.8), rgba(5,5,5,0.2)); }
+        .hero-col::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,11,11,1), rgba(11,11,11,0.2)); transition: 0.4s;}
+        .hero-col:hover::before { background: linear-gradient(to top, rgba(11,11,11,0.8), rgba(11,11,11,0.1)); }
         
         .col-1 { background-image: url('https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=1000&auto=format&fit=crop'); }
         .col-2 { background-image: url('https://images.unsplash.com/photo-1590212151175-e58edd96185b?q=80&w=1000&auto=format&fit=crop'); }
         .col-3 { background-image: url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=1000&auto=format&fit=crop'); }
-
-        .hero-content { position: relative; z-index: 10; text-align: center; opacity: 0.8; transition: 0.3s; pointer-events: none;}
-        .hero-col:hover .hero-content { opacity: 1; transform: translateY(-10px); }
-        .hero-content h2 { font-size: 2.5rem; font-weight: 300; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 8px;}
+        
+        .hero-content { position: relative; z-index: 10; text-align: center; pointer-events: none; }
+        .hero-content h2 { font-size: 2.2rem; font-weight: 300; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 8px;}
         .hero-content p { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase;}
 
-        /* Showcase Split Section */
-        .showcase { padding: 150px 5%; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 10;}
-        .video-container { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);}
-        .video-container iframe { width: 100%; height: 100%; border: none; }
+        /* Glowing Typewriter Section */
+        .intro-section { padding: 150px 10%; max-width: 1200px; margin: 0 auto; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+        .role-tag { color: var(--blue); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; }
         
-        .info-stack .tag { display: inline-block; background: var(--blue); color: #fff; font-size: 9px; font-weight: 700; padding: 6px 12px; border-radius: 4px; margin-bottom: 24px; letter-spacing: 2px; text-transform: uppercase;}
-        .info-stack h1 { font-size: 3.5rem; margin-bottom: 24px; font-weight: 300; line-height: 1.1; letter-spacing: -1px;}
-        .info-stack p { color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; font-size: 1rem; font-weight: 300; }
-        
-        .pill-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
-        .pill-tags span { background: var(--glass); border: 1px solid var(--glass-border); padding: 8px 18px; border-radius: 30px; font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase;}
-        
-        .action-btns { display: flex; gap: 16px; }
-        .btn-primary { background: var(--blue); color: #fff; padding: 16px 36px; border-radius: 40px; font-weight: 600; font-size: 13px; transition: 0.3s; display: inline-block;}
-        .btn-primary:hover { background: #2563eb; transform: scale(1.02); }
-        .btn-secondary { background: #fff; color: #000; padding: 16px 36px; border-radius: 40px; font-weight: 600; font-size: 13px; transition: 0.3s; display: inline-block;}
-        .btn-secondary:hover { background: #e5e5e5; transform: scale(1.02); }
+        .typewriter-text { font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 300; line-height: 1.6; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.15); margin-bottom: 50px; }
+        .typewriter-text span.cursor { border-right: 2px solid var(--blue); animation: blink 0.7s infinite; padding-right: 5px; }
+        @keyframes blink { 50% { border-color: transparent; } }
 
-        /* Work Grid */
-        .projects { padding: 60px 5% 120px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10;}
-        .projects h2 { font-size: 1.5rem; font-weight: 400; margin-bottom: 40px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);}
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
-        .card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 30px; transition: 0.4s; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.2); }
-        .card h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 400; line-height: 1.4;}
-        .card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; flex-grow: 1; line-height: 1.6;}
-        .card a { color: var(--blue); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .meta-info { display: flex; gap: 40px; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;}
 
-        footer { border-top: 1px solid var(--glass-border); padding: 100px 5%; text-align: center; position: relative; z-index: 10;}
-        footer img.profile { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 30px; border: 2px solid var(--glass-border); object-fit: cover;}
-        footer h2 { font-size: 2.5rem; font-weight: 300; margin-bottom: 40px; max-width: 800px; margin-inline: auto; line-height: 1.2;}
-        .footer-links { display: flex; justify-content: center; gap: 40px; margin-top: 40px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;}
-        .footer-links a { color: var(--text-muted); transition: 0.3s; }
-        .footer-links a:hover { color: var(--text); }
-
-        @media (max-width: 900px) {
-            .hero { flex-direction: column; }
-            .hero-col { border-right: none; border-bottom: 1px solid var(--glass-border); }
-            .showcase { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-        }
+        footer { padding: 100px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        @media (max-width: 900px) { .hero { flex-direction: column; } .typewriter-text { font-size: 1.4rem; } }
     </style>
 </head>
 <body>
-
     <nav>
         <div class="nav-links">
             <a href="#">HOME</a>
-            <a href="#work">WORK</a>
             <a href="#about">ABOUT</a>
         </div>
-        <div class="logo">Adil Husain</div>
-        <a href="mailto:imailadilhusain@gmail.com" class="btn-reach">Reach Out &rarr;</a>
+        <div class="logo">adil husain</div>
+        <a href="mailto:imailadilhusain@gmail.com" style="font-size: 11px; border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 30px; text-decoration: none; color: white; transition: 0.3s;">CONTACT</a>
     </nav>
 
     <header class="hero">
         <a href="narrative.html" class="hero-col col-1">
-            <div class="hero-content">
-                <h2>Narrative</h2>
-                <p>Features & Shorts</p>
-            </div>
+            <div class="hero-content"><h2>Narrative</h2><p>Features & Shorts</p></div>
         </a>
         <a href="commercial.html" class="hero-col col-2">
-            <div class="hero-content">
-                <h2>Commercial</h2>
-                <p>Branded Campaigns</p>
-            </div>
+            <div class="hero-content"><h2>Commercial</h2><p>Branded Campaigns</p></div>
         </a>
         <a href="documentary.html" class="hero-col col-3">
-            <div class="hero-content">
-                <h2>Documentary</h2>
-                <p>Unscripted Reality</p>
-            </div>
+            <div class="hero-content"><h2>Documentary</h2><p>Unscripted Reality</p></div>
         </a>
     </header>
 
-    <section class="showcase" id="about">
-        <div class="video-container" style="background-image: url('https://i.postimg.cc/mZh46bWz/Screenshot-2026-03-08-at-4-25-10-PM.png'); background-size: cover; background-position: center;"></div>
+    <section class="intro-section" id="about">
+        <div class="role-tag">Director & Cinematographer</div>
         
-        <div class="info-stack">
-            <span class="tag">New | Director & Cinematographer</span>
-            <h1>The Visual Journey</h1>
-            <p>
-                Hi, I am Adil. A failed human being turned into a filmmaker. I've always wanted to show all my emotion through my films. I did my bachelor's from Mithibai in Mumbai in filmmaking, but the real work happened on the ground. So made Short films documentaries and feature film for college to learn in depth of filmmaking.
-            </p>
-            <p>
-                To feed my stomach, I worked as a DOP for Qyuki, shooting for Farah Khan's <em>Aunty Kisko Bola</em> show, and shooting vlogs for Ankita Lokhande and Hansika Motwani's YouTube channels. I've worked on various feature films as an Assistant Cinematographer and Assistant Director. I've been a DOP for Flipkart Video and shot brand projects like Licious, while directing my own short films and documentaries. It’s all about the emotion in the frame. 
-            </p>
-            
-            <div class="pill-tags">
-                <span>Directing</span>
-                <span>Cinematography</span>
-                <span>Lighting</span>
-                <span>DaVinci Resolve</span>
-                <span>Sony FX Line</span>
-            </div>
-
-            <div class="action-btns">
-                <a href="#work" class="btn-primary">View All Work</a>
-                <a href="mailto:imailadilhusain@gmail.com" class="btn-secondary">Get In Touch</a>
-            </div>
+        <div class="typewriter-text">
+            <span id="typewriter"></span><span class="cursor"></span>
+        </div>
+        
+        <div class="meta-info">
+            <div>📍 Mumbai / Araria</div>
+            <div>🎥 Filmmaker</div>
+            <div><a href="mailto:imailadilhusain@gmail.com" style="color: var(--blue); text-decoration: none;">LET'S TALK &rarr;</a></div>
         </div>
     </section>
 
-    <section class="projects" id="work">
-        <h2>Selected Works</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>BHAASH (Short Film)</h3>
-                <p>Assistant Cinematographer. Captured dramatic rural landscapes, intimate classroom sequences, and low-light dramatic scenes.</p>
-                <a href="narrative.html">View Screengrabs &rarr;</a>
-            </div>
-            <div class="card">
-                <h3>Flipkart × Samsung AI Phones</h3>
-                <p>Concept commercial and branded visual storytelling executed for Flipkart.</p>
-                <a href="commercial.html">View Project &rarr;</a>
-            </div>
-            <div class="card">
-                <h3>Lucious Brand Campaign</h3>
-                <p>High-end commercial cinematography showcasing food textures and brand identity.</p>
-                <a href="commercial.html">Watch Reel &rarr;</a>
-            </div>
-            <div class="card">
-                <h3>Feature Film Experience</h3>
-                <p>Direction team (AD/DA) and on-set coordination for 'Mission Hitchki' and 'Bindu & Bilju'.</p>
-                <a href="narrative.html">View BTS Gallery &rarr;</a>
-            </div>
-            <div class="card">
-                <h3>Coldplay Concert Visuals</h3>
-                <p>Live event coverage capturing the scale, lighting, and energy of the arena.</p>
-                <a href="commercial.html">View Gallery &rarr;</a>
-            </div>
-            <div class="card">
-                <h3>Independent Documentary</h3>
-                <p>Raw, unscripted observation focusing on daily survival and human connection.</p>
-                <a href="documentary.html">Watch Documentary &rarr;</a>
-            </div>
-        </div>
-    </section>
+    <script>
+        const text = "Hi, I am Adil. A failed human being turned into a filmmaker. I've always wanted to show all my emotion through my films. I did my bachelor's from Mithibai in Mumbai in filmmaking, but the real work happened on the ground. So made Short films, documentaries and feature film for college to learn in depth of filmmaking. To feed my stomach, I worked as a DOP for Qyuki, shooting for Farah Khan's Aunty Kisko Bola show, and shooting vlogs for Ankita Lokhande and Hansika Motwani's YouTube channels. I've worked on various feature films as an Assistant Cinematographer and Assistant Director. I've been a DOP for Flipkart Video and shot brand projects like Licious, while directing my own short films and documentaries. It’s all about the emotion in the frame.";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 35);
+            }
+        }
+        // Start typing effect when section is scrolled into view, or just on load
+        window.onload = () => { setTimeout(typeWriter, 500); };
+    </script>
 
     <footer>
-        <img src="https://i.postimg.cc/k5n08dyH/A742132.jpg" alt="Adil Husain" class="profile">
-        <h2>Open to collaboration across fiction, commercial, and documentary projects.</h2>
-        <div class="footer-links">
-            <a href="mailto:imailadilhusain@gmail.com">Email</a>
-            <a href="https://instagram.com/cine.dil" target="_blank">Instagram</a>
-            <a href="https://youtube.com/@adilhusain" target="_blank">YouTube</a>
+        <img src="https://i.postimg.cc/k5n08dyH/A742132.jpg" alt="Adil Husain" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 20px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
+        <h2 style="font-weight: 300; margin-bottom: 20px; text-transform: lowercase;">@cine.dil</h2>
+        <div style="display: flex; justify-content: center; gap: 30px; font-size: 12px; color: var(--text-muted); letter-spacing: 2px;">
+            <a href="https://instagram.com/cine.dil" target="_blank" style="text-decoration: none; color: inherit;">INSTAGRAM</a>
+            <a href="https://youtube.com/@adilhusain" target="_blank" style="text-decoration: none; color: inherit;">YOUTUBE</a>
         </div>
     </footer>
-
 </body>
 </html>
