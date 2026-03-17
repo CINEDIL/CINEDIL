@@ -41,9 +41,26 @@
         .intro-section { padding: 150px 10%; max-width: 1000px; margin: 0 auto; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
         .role-tag { color: var(--blue); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; }
         
-        .typewriter-text { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 300; line-height: 1.8; color: #ccc; margin-bottom: 50px; }
-        .typewriter-text span.cursor { border-right: 2px solid var(--blue); animation: blink 0.7s infinite; padding-right: 5px; }
-        @keyframes blink { 50% { border-color: transparent; } }
+        .glow-intro-container {
+    font-family: 'JetBrains Mono', monospace; 
+    font-size: 1.1rem; 
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+.glow-word {
+    display: inline-block;
+    margin-right: 0.3em;
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+
+.glow-word.lit {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
 
         .meta-info { display: flex; gap: 40px; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;}
 
@@ -90,9 +107,7 @@
     <section class="intro-section" id="about">
         <div class="role-tag">Director & Cinematographer</div>
         
-        <div class="typewriter-text">
-            <span id="typewriter"></span><span class="cursor"></span>
-        </div>
+       <div id="glow-intro" class="glow-intro-container"></div>
         
         <div class="meta-info">
             <div>📍 Mumbai / Araria</div>
@@ -103,16 +118,28 @@
 
     <script>
         const text = "Hi, I am Adil. A failed human turned into a filmmaker. I've always wanted to show all my emotion through my films. I did my bachelor's from Mithibai in Mumbai in filmmaking, but the real work happened on the ground. So made Short films documentaries and feature film for college to learn in depth of filmmaking. To feed my stomach, I worked as a DOP for Qyuki, shooting for Farah Khan's Aunty Kisko Bola show, and shooting vlogs for Ankita Lokhande and Hansika Motwani's YouTube channels. I've worked on various feature films as an Assistant Cinematographer and Assistant Director. I've been a DOP for Flipkart Video and shot brand projects like Licious, while directing my own short films and documentaries. It's all about the emotion in the frame.";
-        let i = 0;
-        function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 35);
-            }
-        }
-        window.onload = () => { setTimeout(typeWriter, 500); };
-    </script>
+        const container = document.getElementById('glow-intro');
+    
+    // Split the text into words and wrap each in a span
+    const words = text.split(' ');
+    words.forEach(word => {
+        const span = document.createElement('span');
+        span.textContent = word;
+        span.className = 'glow-word';
+        container.appendChild(span);
+    });
+
+    // Animate the words to glow one by one
+    const wordElements = document.querySelectorAll('.glow-word');
+    let delay = 300; // Delay before the animation starts
+    let speed = 80;  // Speed between each word lighting up 
+    
+    wordElements.forEach((el, index) => {
+        setTimeout(() => {
+            el.classList.add('lit');
+        }, delay + (index * speed));
+    });
+</script>
 
     <section class="projects" id="work">
         <h2>Selected Works</h2>
