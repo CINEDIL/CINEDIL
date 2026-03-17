@@ -103,14 +103,40 @@
 
     <script>
         const text = "Hi, I am Adil. A failed human turned into a filmmaker. I've always wanted to show all my emotion through my films. I did my bachelor's from Mithibai in Mumbai in filmmaking, but the real work happened on the ground. So made Short films documentaries and feature film for college to learn in depth of filmmaking. To feed my stomach, I worked as a DOP for Qyuki, shooting for Farah Khan's Aunty Kisko Bola show, and shooting vlogs for Ankita Lokhande and Hansika Motwani's YouTube channels. I've worked on various feature films as an Assistant Cinematographer and Assistant Director. I've been a DOP for Flipkart Video and shot brand projects like Licious, while directing my own short films and documentaries. It's all about the emotion in the frame.";
-        let i = 0;
-        function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 35);
-            }
-        }
+       const lines = [
+    "Hi, I am Adil.",
+    "A failed human turned into a filmmaker.",
+    "I've always wanted to show all my emotions through visuals.",
+    "This is where it all lives."
+];
+
+let currentLine = 0;
+
+function showNextLine() {
+    if (currentLine < lines.length) {
+        const container = document.getElementById("typewriter");
+
+        const line = document.createElement("div");
+        line.style.opacity = 0;
+        line.style.transform = "translateY(10px)";
+        line.style.transition = "0.6s ease";
+
+        line.innerText = lines[currentLine];
+        container.appendChild(line);
+
+        setTimeout(() => {
+            line.style.opacity = 1;
+            line.style.transform = "translateY(0)";
+        }, 50);
+
+        currentLine++;
+        setTimeout(showNextLine, 800); // delay between lines
+    }
+}
+
+window.onload = () => {
+    setTimeout(showNextLine, 500);
+};
         window.onload = () => { setTimeout(typeWriter, 500); };
     </script>
 
